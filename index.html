@@ -1,0 +1,91 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>To-Do App</title>
+
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css"
+  />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <main class="container" role="main">
+
+    <header class="app-header">
+      <h1 class="app-title">
+        <i class="ti ti-checklist" aria-hidden="true"></i>
+        My Tasks
+      </h1>
+      <span class="task-count" id="task-count" aria-live="polite"></span>
+    </header>
+
+    <section class="add-task-section" aria-label="Add a new task">
+      <div class="input-row">
+        <input
+          type="text"
+          id="task-input"
+          class="task-input"
+          placeholder="Add a new task…"
+          aria-label="Task title"
+          autocomplete="off"
+          maxlength="120"
+        />
+        <select id="priority-select" class="priority-select" aria-label="Priority">
+          <option value="none">No priority</option>
+          <option value="low">Low</option>
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+        </select>
+        <button id="add-btn" class="add-btn" onclick="addTask()" aria-label="Add task">
+          <i class="ti ti-plus" aria-hidden="true"></i>
+          Add
+        </button>
+      </div>
+      <p class="input-hint" id="input-error" aria-live="polite"></p>
+    </section>
+
+    <nav class="filter-bar" aria-label="Filter tasks">
+      <button class="filter-btn active" data-filter="all"       onclick="setFilter('all', this)">All</button>
+      <button class="filter-btn"        data-filter="active"    onclick="setFilter('active', this)">Active</button>
+      <button class="filter-btn"        data-filter="completed" onclick="setFilter('completed', this)">Completed</button>
+      <button class="filter-btn"        data-filter="high"      onclick="setFilter('high', this)">
+        <i class="ti ti-flag" aria-hidden="true"></i> High Priority
+      </button>
+    </nav>
+
+    
+      <ul id="task-list" class="task-list" role="list"></ul>
+
+      <!-- Empty state shown when no tasks match the filter -->
+      <div id="empty-state" class="empty-state" hidden>
+        <i class="ti ti-mood-smile" aria-hidden="true"></i>
+        <p>Nothing here yet — add a task above!</p>
+      </div>
+    </section>
+
+    
+    <footer class="app-footer" id="app-footer" hidden>
+      <span id="remaining-count" class="remaining"></span>
+      <button class="clear-btn" onclick="clearCompleted()" id="clear-btn" hidden>
+        Clear completed
+      </button>
+    </footer>
+
+  </main>
+
+  <!-- Our JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
